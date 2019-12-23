@@ -25,8 +25,8 @@ def main():
 
 
 	env = SubprocVecEnv([lambda:  NetworkEnv() for i in range(100)])
-	model = PPO2("CustomPolicy", env, verbose=0,gamma=0.2,cliprange_vf=-1)#)
-	model = PPO2.load("NetworkModel",env=env)
+	model = PPO2("CustomPolicy", env, verbose=0,gamma=0.2)#)
+	#model = PPO2.load("NetworkModel",env=env)
 	model.learn(total_timesteps=10000000)
 	model.save("NetworkModel")
 	#print("here")

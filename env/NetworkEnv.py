@@ -95,12 +95,22 @@ class NetworkEnv(gym.Env):
 
 
 
-        # for j in range(0,10):
-        #     for i in range(0,10):
+        for j in range(0,10 ):
+            counternum=0
 
-        #         # if any element in the first column of the action matrix is 0, the whole line should be 0.
-        #         if action[j][0]==0 and action[j][i+1]==1:
-        #                     theta=theta-50
+            #Not necessary that allocator should transmit to users directly , example 2file
+            if j==0:
+                continue
+            for i in range(0,10):
+
+                # if any element in the first column of the action matrix is 0, the whole line should be 0.
+                if action[j][0]==0 and action[j][i+1]==1:
+                            theta=theta-50
+                if(action[j][0]==1 and action[j][i+1]==1):
+                    counternum=counternum+1
+            if(counternum>=1):
+                theta=theta+50
+
 
 
         # for j in range(0,9):
@@ -121,7 +131,7 @@ class NetworkEnv(gym.Env):
         if action[int(state[0]-1)][0]==0:
             zeta=-50
         else:
-            zeta=20
+            zeta=100
 
         
         self.rewards=zeta+theta+phy
